@@ -1,0 +1,52 @@
+---
+import type { PostType } from "../types/Post";
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  href: string;
+  type: PostType;
+}
+
+const { title, description, image, href, type } = Astro.props;
+
+const titleGradientOps: Record<PostType, string> = {
+  "data-structures": "from-indigo-400 via-violet-600 to-cyan-400",
+  algorithms: "from-emerald-500 to-emerald-900",
+  "design-patterns": "from-amber-500 to-pink-500",
+  "software-architecture": "from-fuchsia-600 to-purple-600",
+};
+
+const titleGradient = titleGradientOps[type];
+---
+
+<article class="min-w-64 h-80 flex-1 hover:scale-110 transition-transform">
+  <a
+    href={href}
+    class="no-underline text-white w-full h-full p-0 m-0 bg-gray-900 rounded-md border-[1px] border-gray-700 flex flex-col"
+  >
+    {
+      image ? (
+        <picture class=" w-full flex-1 bg-slate-700 flex justify-center items-center">
+          <img src={image} />
+        </picture>
+      ) : (
+        <div class=" w-full flex-1 bg-gray-800 flex justify-center items-center">
+          <h3
+            class:list={[
+              "text-4xl text-center px-4 font-bold bg-gradient-to-b inline-block text-transparent bg-clip-text ",
+              titleGradient,
+            ]}
+          >
+            {title}
+          </h3>
+        </div>
+      )
+    }
+    <div class="flex-1 px-6">
+      <h3>{title}</h3>
+      <p class="text-sm text-gray-400">{description}</p>
+    </div>
+  </a>
+</article>

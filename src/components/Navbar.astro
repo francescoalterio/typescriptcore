@@ -1,0 +1,68 @@
+---
+import NavLink from "./NavLink.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<header
+  class="w-full h-16 box-border px-8 bg-gray-900 flex justify-center items-center"
+>
+  <div class="w-full max-w-6xl flex justify-between items-center relative">
+    <h2 class="font-normal">
+      Typescript <span class="text-accent-200 font-bold">Core</span>
+    </h2>
+    <nav class="md:flex hidden items-center gap-4">
+      <NavLink href="/data-structures/introduction">
+        Estructuras de datos
+      </NavLink>
+      <NavLink href="/algorithms/introduction"> Algoritmos </NavLink>
+      <NavLink href="/design-patterns/introduction">
+        Patrones de diseño
+      </NavLink>
+      <NavLink href="/software-architecture/introduction">
+        Arquitectura
+      </NavLink>
+      <NavLink href="#"> Sobre el proyecto </NavLink>
+    </nav>
+    <button
+      id="mobile-menu-button"
+      class="md:hidden flex justify-center items-center bg-gray-900"
+    >
+      <Icon name="mdi:hamburger-menu" class="text-white" size={30} />
+    </button>
+    <nav
+      id="mobile-menu"
+      class="hidden
+        box-border
+        flex
+        flex-col
+        bg-gray-800
+        p-10
+        rounded-md
+        absolute
+        top-16
+        w-full
+        gap-4"
+    >
+      <NavLink href="/data-structures/introduction">
+        Estructuras de datos
+      </NavLink>
+      <NavLink href="/algorithms/introduction"> Algoritmos </NavLink>
+      <NavLink href="/design-patterns/introduction">
+        Patrones de diseño
+      </NavLink>
+      <NavLink href="/software-architecture/introduction">
+        Arquitectura
+      </NavLink>
+      <NavLink href="#"> Sobre el proyecto </NavLink>
+    </nav>
+  </div>
+</header>
+<script>
+  document
+    .getElementById("mobile-menu-button")!
+    .addEventListener("click", () => {
+      const mobileMenu = document.getElementById("mobile-menu")!;
+      mobileMenu.style.display =
+        mobileMenu.style.display === "none" ? "flex" : "none";
+    });
+</script>

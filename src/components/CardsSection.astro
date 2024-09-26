@@ -1,0 +1,42 @@
+---
+import { Icon } from "astro-icon/components";
+import type { Post } from "../types/Post";
+import PostCard from "./PostCard.astro";
+
+interface Props {
+  sectionTitle: string;
+  posts: Post[];
+  iconName: string;
+  iconColor?: string;
+}
+
+const { sectionTitle, posts, iconName } = Astro.props;
+
+const iconColor = Astro.props.iconColor || "text-accent-200";
+---
+
+<section>
+  <div class="w-full flex gap-2 items-center">
+    <Icon name={iconName} size={50} class:list={["", iconColor]} />
+    <h2 class="sm:text-3xl text-2xl">
+      {sectionTitle}
+    </h2>
+  </div>
+  <div class="flex flex-wrap w-full gap-8 mt-8">
+    {
+      posts.map(({ frontmatter, dir, file }) => (
+        <PostCard
+          title={frontmatter.title}
+          description={frontmatter.description}
+          image={frontmatter.image}
+          href={`/${dir}/${file}`}
+          type={dir}
+        />
+      ))
+    }
+    <div class="min-w-64 flex-1"></div>
+    <div class="min-w-64 flex-1"></div>
+    <div class="min-w-64 flex-1"></div>
+    <div class="min-w-64 flex-1"></div>
+  </div>
+</section>

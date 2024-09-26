@@ -1,0 +1,29 @@
+---
+import "../tailwind.css";
+import Navbar from "../components/Navbar.astro";
+const { title } = Astro.props;
+---
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+  </head>
+  <body
+    class="w-full bg-gray-900 text-white flex flex-col items-center m-0 p-0"
+  >
+    <Navbar />
+    <main class="max-w-6xl w-full pb-8 box-border px-8">
+      <slot />
+    </main>
+    <footer
+      class="w-full h-28 border-t border-gray-500 flex justify-center items-center"
+    >
+      <p class="font-semibold">
+        <span class="text-accent-200 font-bold">Gracias por leer.</span> Que tenga
+        un lindo dia
+      </p>
+    </footer>
+  </body>
+</html>
